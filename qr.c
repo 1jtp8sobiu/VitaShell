@@ -103,7 +103,9 @@ int qr_thread() {
 int qr_scan_thread(SceSize args, void *argp) {
   data = last_qr;
   if (last_qr_len > 4) {
-    if (!(data[0] == 'h' && data[1] == 't' && data[2] == 't' && data[3] == 'p')) {
+    if (!(data[0] == 'h' && data[1] == 't' && data[2] == 't' && data[3] == 'p' ||
+          data[0] == 'p' && data[1] == 's' && data[2] == 't' && data[3] == 's' ||
+          data[0] == 'p' && data[1] == 's' && data[2] == 'n' && data[3] == 's')) {
       initMessageDialog(SCE_MSG_DIALOG_BUTTON_TYPE_OK, language_container[QR_SHOW_CONTENTS], data);
       setDialogStep(DIALOG_STEP_QR_SHOW_CONTENTS);
       return sceKernelExitDeleteThread(0);
